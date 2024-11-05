@@ -2,6 +2,9 @@
 
 Este projeto fornece um script em Google Apps Script para criar uma planilha personalizada com funcionalidades de checklist, timestamps e placeholders, ideal para organizar listas e anotações. O script permite registrar automaticamente os tempos de conclusão e criação para cada entrada com checkbox, além de aplicar um placeholder na célula de entrada de dados.
 
+##Exemplo de Planilha Configurada
+[Veja um exemplo](https://docs.google.com/spreadsheets/d/e/2PACX-1vRpbTZxLo0_utHlvYNeysXJ1C7-tuwv5ixMqrEkyJiXNedIn4BeV3jUh6K4A3WghB4U8rItkNgrQTsW/pubhtml) de como sua planilha deve ficar ao final da configuração.
+
 ## Pré-requisitos
 
 - Uma conta Google com acesso ao Google Sheets.
