@@ -1,7 +1,3 @@
-Aqui está o `README.md` com o passo adicional da formatação condicional em uma posição que facilita o entendimento para o usuário:
-
----
-
 # Script de Automação para Planilhas Google com Google Apps Script
 
 Este projeto fornece um script em Google Apps Script para criar uma planilha personalizada com funcionalidades de checklist, timestamps e placeholders, ideal para organizar listas e anotações. O script permite registrar automaticamente os tempos de conclusão e criação para cada entrada com checkbox, além de aplicar um placeholder na célula de entrada de dados.
