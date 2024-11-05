@@ -1,11 +1,11 @@
 function onEdit(e) {
   const sheet = e.source.getActiveSheet();
   const range = e.range;
-  
+
   // Configurações do placeholder e células de controle
   const placeholderText = "Digite sua anotação aqui...";
   const mainCell = sheet.getRange("A1:B1");
-  
+
   // Verifica se a célula editada é a célula A1 com o placeholder
   if (range.getA1Notation() === "A1") {
     if (range.getValue() !== placeholderText && range.getValue() !== "") {
@@ -24,7 +24,7 @@ function onEdit(e) {
     }
   }
 
-  // Regras de timestamp e manipulação de checkbox
+  // Regras para manipulação de checkbox e timestamps
   if (range.getColumn() === 2 && range.getRow() > 1) {
     // Insere um checkbox automaticamente se a coluna B foi preenchida
     const checkboxCell = sheet.getRange(range.getRow(), 1);
@@ -32,15 +32,22 @@ function onEdit(e) {
       checkboxCell.insertCheckboxes();
     }
     sheet.getRange(range.getRow(), 3).setValue(new Date());  // Atualiza timestamp na coluna C
-  } else if (range.getColumn() === 1 && range.getRow() > 1 && range.isChecked()) {
-    sheet.getRange(range.getRow(), 4).setValue(new Date());  // Timestamp na coluna D
-    
-    // Calcula a diferença entre timestamps nas colunas D e C
-    const creationTimestamp = sheet.getRange(range.getRow(), 3).getValue();
-    const completionTimestamp = sheet.getRange(range.getRow(), 4).getValue();
-    if (creationTimestamp) {
-      const duration = (completionTimestamp - creationTimestamp) / (1000 * 60 * 60);
-      sheet.getRange(range.getRow(), 5).setValue(duration.toFixed(2) + " horas");
+  } else if (range.getColumn() === 1 && range.getRow() > 1) {
+    if (range.isChecked()) {
+      // Quando checkbox é marcado, insere timestamp na coluna D
+      sheet.getRange(range.getRow(), 4).setValue(new Date());
+      
+      // Calcula a diferença entre timestamps nas colunas D e C
+      const creationTimestamp = sheet.getRange(range.getRow(), 3).getValue();
+      const completionTimestamp = sheet.getRange(range.getRow(), 4).getValue();
+      if (creationTimestamp) {
+        const duration = (completionTimestamp - creationTimestamp) / (1000 * 60 * 60);
+        sheet.getRange(range.getRow(), 5).setValue(duration.toFixed(2) + " horas");
+      }
+    } else {
+      // Quando checkbox é desmarcado, limpa as colunas D e E
+      sheet.getRange(range.getRow(), 4).clearContent();
+      sheet.getRange(range.getRow(), 5).clearContent();
     }
   }
 
